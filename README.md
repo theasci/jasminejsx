@@ -4,9 +4,8 @@ A version of Jasmine 2.2.0 that works with Adobes' ExtendScript.  ExtendScript i
 
 To use Jasmine JSX:
 
- * Install Adobe [ExtendScript Toolkit](https://creative.adobe.com/products/estk).
- * Download this project and open the file `specRunner.jsx`.
- * Run the script and watch the spec files in the JavaScript console run.
+ * Use the `specRunner.sh` to launch InDesign and run the `specRunner.jsx` in ExtendScript.
+ * A log should be created at `logs/test.log`.
 
 ## Adding Jasmine JSX into your project
 
