@@ -14,7 +14,7 @@ function extend(destination, source) {
 
 #include "../lib/extendscript-es5-shim-0.2.0.js"
 #include "../lib/moment-2.24.0.js"
-#include "jasmine-2.2.0.jsx"
+#include "../lib/jasmine-2.6.4.js"
 // #include "jsxreporter.jsx"
 #include "../models/Logger.jsx"
 #include  "../models/LogReporter.jsx"
