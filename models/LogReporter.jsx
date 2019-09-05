@@ -1,0 +1,146 @@
+// Borrowed from https://raw.githubusercontent.com/tmaslen/jasminejsx/master/jasmine/jsxreporter.jsx
+
+$.global.jasmineRequire.console = function(jRequire, j$) {
+	j$.LogReporter = jRequire.LogReporter();
+};
+
+$.global.jasmineRequire.LogReporter = function() {
+
+	function LogReporter(options) {
+
+		var simpleTimer = {
+			startedAt: null,
+			start: function() {
+				this.startedAt = moment();
+			},
+			elapsed: function() {
+				return moment.duration(
+					moment().diff(this.startedAt)
+				).asMilliseconds();
+			}
+		};
+
+		var showColors = options.showColors || false,
+			timer = options.timer || simpleTimer,
+			specCount,
+			failureCount,
+			failedSpecs = [],
+			pendingCount,
+			failedSuites = [],
+			logger = options.logger || null;
+
+		if(!logger) {
+			throw new TypeError('Logger instance must be given.');
+		}
+
+		logger.info('***************************');
+		logger.info('Jasmine ExtendScript Runner');
+		logger.info('***************************');
+
+		this.jasmineStarted = function() {
+			specCount = 0;
+			failureCount = 0;
+			pendingCount = 0;
+			timer.start();
+		};
+
+		this.jasmineDone = function() {
+			for (var i = 0; i < failedSpecs.length; i++) {
+				specFailureDetails(failedSpecs[i]);
+			}
+
+			if (specCount > 0) {
+
+				var specCounts = specCount + ' ' + plural('spec', specCount) + ', ' +
+					failureCount + ' ' + plural('failure', failureCount);
+
+				if (pendingCount) {
+					specCounts += ', ' + pendingCount + ' pending ' + plural('spec', pendingCount);
+				}
+
+				logger.info(specCounts);
+			} else {
+				logger.info('No specs found');
+			}
+
+			var seconds = timer.elapsed() / 1000;
+			logger.info('Finished in ' + seconds + ' ' + plural('second', seconds));
+
+			for (i = 0; i < failedSuites.length; i++) {
+				suiteFailureDetails(failedSuites[i]);
+			}
+		};
+
+		this.specDone = function(result) {
+			specCount++;
+
+			if (result.status == 'pending') {
+				pendingCount++;
+				$.write('*');
+				return;
+			}
+
+			if (result.status == 'passed') {
+				$.write('.');
+				return;
+			}
+
+			if (result.status == 'failed') {
+				failureCount++;
+				failedSpecs.push(result);
+				$.write('F');
+			}
+		};
+
+		this.suiteDone = function(result) {
+			if (result.failedExpectations && result.failedExpectations.length > 0) {
+				failureCount++;
+				failedSuites.push(result);
+			}
+		};
+
+		return this;
+
+		function plural(str, count) {
+			return count == 1 ? str : str + 's';
+		}
+
+		function repeat(thing, times) {
+			var arr = [];
+			for (var i = 0; i < times; i++) {
+				arr.push(thing);
+			}
+			return arr;
+		}
+
+		function indent(str, spaces) {
+			var lines = (str || '').split('\n');
+			var newArr = [];
+			for (var i = 0; i < lines.length; i++) {
+				newArr.push(repeat(' ', spaces).join('') + lines[i]);
+			}
+			return newArr.join('\n');
+		}
+
+		function specFailureDetails(result) {
+			logger.info(result.fullName);
+
+			for (var i = 0; i < result.failedExpectations.length; i++) {
+				var failedExpectation = result.failedExpectations[i];
+				logger.info(indent(failedExpectation.message, 2));
+				logger.info(indent(failedExpectation.stack, 2));
+			}
+
+		}
+
+		function suiteFailureDetails(result) {
+			for (var i = 0; i < result.failedExpectations.length; i++) {
+				logger.info('An error was thrown in an afterAll');
+				logger.info('AfterAll ' + result.failedExpectations[i].message);
+
+			}
+		}
+	}
+
+	return LogReporter;
+};
