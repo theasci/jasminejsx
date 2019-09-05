@@ -1,3 +1,6 @@
+$.evalFile(rootPath + '/node_modules/extendscript-es5-shim/index.js');
+$.evalFile(rootPath + '/node_modules/moment/moment.js');
+
 /**
  * Handles logging messages to different sources. Creates logs in hosts/logs/ directory.
  * @see https://github.com/sidpalas/extendscript-logging
