@@ -6,9 +6,9 @@ var rootPath = new File($.fileName).parent
 $.evalFile(rootPath + '/boot.jsx');
 
 //Load spec files
-var specsPath = rootPath + '/specs';
-$.evalFile(specsPath + '/calculator.jsx');
-$.evalFile(specsPath + '/SpecLength.jsx');
+var specPath = rootPath + '/spec';
+$.evalFile(specPath + '/calculator.jsx');
+$.evalFile(specPath + '/SpecLength.jsx');
 
 //Give InDesign more resources by being active
 // app.activate();

@@ -2,7 +2,7 @@
 
 DIRECTORY=$(cd `dirname $0` && pwd)
 EXTENDSCRIPT="$DIRECTORY/run.jsx"
-EXTENDSCRIPT_LOG="$DIRECTORY/logs/test.log"
+EXTENDSCRIPT_LOG="$DIRECTORY/log/test.log"
 
 echo "Starting ExtendScript specs..."
 echo "Be sure you are signed into the Creative Cloud app or you'll get no output from the test suite."

@@ -2,7 +2,7 @@ $.evalFile(rootPath + '/node_modules/extendscript-es5-shim/index.js');
 $.evalFile(rootPath + '/node_modules/moment/moment.js');
 
 /**
- * Handles logging messages to different sources. Creates logs in hosts/logs/ directory.
+ * Handles logging messages to different sources. Creates log in hosts/log/ directory.
  * @see https://github.com/sidpalas/extendscript-logging
  *
  * var logger = Logger('DEBUG','mylog.log');
@@ -76,12 +76,12 @@ var Logger = function(severity, logName){
 	}
 
 	this.file = function() {
-		var logsDirString = new File($.fileName).path + "/../logs/"
-		var logsDir = new Folder(logsDirString);
-		if (!logsDir.exists){
-			logsDir.create();
+		var logDirString = new File($.fileName).path + "/../log/"
+		var logDir = new Folder(logDirString);
+		if (!logDir.exists){
+			logDir.create();
 		}
-		var logFilePath = logsDirString + this.logName;
+		var logFilePath = logDirString + this.logName;
 		return new File(logFilePath);
 	}
 	
