@@ -1,7 +1,7 @@
-var rootPath = new File($.fileName).parent
-$.evalFile(rootPath + '/lib/jasmine-2.6.4.js');
-$.evalFile(rootPath + '/model/LogReporter.jsx');
-$.evalFile(rootPath + '/model/Logger.jsx');
+var jasmineJsxRootPath = new File($.fileName).parent
+$.evalFile(jasmineJsxRootPath + '/lib/jasmine-2.6.4.js');
+$.evalFile(jasmineJsxRootPath + '/model/LogReporter.jsx');
+$.evalFile(jasmineJsxRootPath + '/model/Logger.jsx');
 
 /**
  * Timeout method used in QueueRunner.timer
