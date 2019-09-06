@@ -33,8 +33,9 @@ var jasmineInterface = jasmineRequire.interface(jasmine, env);
 extend($.global, jasmineInterface);
 
 // Add Reporter
+var logger = new Logger('DEBUG', rootPath+'/log/test.log');
 var reporter = new LogReporter({
-    logger: new Logger('DEBUG', 'test.log'),
+    logger: logger,
     timer: {
         startedAt: null,
         start: function () {

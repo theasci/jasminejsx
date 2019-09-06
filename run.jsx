@@ -11,4 +11,7 @@ $.evalFile(specPath + '/Calculator.jsx');
 $.evalFile(specPath + '/LoggerSpec.jsx');
 $.evalFile(specPath + '/SpecLength.jsx');
 
+//Brings application to forefront to prioritizes running tests.
+app.activate();
+
 runJasmine();
