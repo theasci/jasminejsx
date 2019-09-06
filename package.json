@@ -2,7 +2,7 @@
   "name": "jasminejsx",
   "description": "A port of Jasmine.js that is compatible with Adobe ExtendScript",
   "version": "0.0.1",
-  "homepage": "http://github.com/shawnpyle/jasminejsx.git",
+  "homepage": "http://github.com/theasci/jasminejsx.git",
   "contributors": [
     {
       "name": "Tom Maslen",
@@ -15,10 +15,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/shawnpyle/jasminejsx.git"
+    "url": "https://github.com/theasci/jasminejsx.git"
   },
   "bugs": {
-    "url": "https://github.com/shawnpyle/jasminejsx/issues"
+    "url": "https://github.com/theasci/jasminejsx/issues"
   },
   "engines": {
     "node": ">= 0.8.0"

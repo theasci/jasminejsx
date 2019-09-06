@@ -7,7 +7,8 @@ $.evalFile(rootPath + '/boot.jsx');
 
 //Load spec files
 var specPath = rootPath + '/spec';
-$.evalFile(specPath + '/calculator.jsx');
+$.evalFile(specPath + '/Calculator.jsx');
+$.evalFile(specPath + '/LoggerSpec.jsx');
 $.evalFile(specPath + '/SpecLength.jsx');
 
 runJasmine();

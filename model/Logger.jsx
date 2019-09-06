@@ -1,5 +1,7 @@
+rootPath = rootPath || new File($.fileName).parent
 $.evalFile(rootPath + '/node_modules/extendscript-es5-shim/index.js');
 $.evalFile(rootPath + '/node_modules/moment/moment.js');
+$.evalFile(new File($.fileName).parent.parent + '/lib/json2.js');
 
 /**
  * Handles logging messages to different sources. Creates log in hosts/log/ directory.

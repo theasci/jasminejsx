@@ -20,7 +20,7 @@ Treat it like an npm module.
 1. Define a git dependency in your `package.json:
     ```json
     "dependencies": {
-        "jasminejsx": "git://github.com/shawnpyle/jasminejsx.git#master"
+        "jasminejsx": "git://github.com/theasci/jasminejsx.git#master"
     },
     ```
 1. Install it and its dependencies to your `node_modules`.

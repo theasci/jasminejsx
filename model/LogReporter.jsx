@@ -1,5 +1,4 @@
-// Borrowed from https://raw.githubusercontent.com/tmaslen/jasminejsx/master/jasmine/jsxreporter.jsx
-
+// Adapted from https://raw.githubusercontent.com/tmaslen/jasminejsx/master/jasmine/jsxreporter.jsx
 function LogReporter(options) {
 
 	var noopTimer = {
