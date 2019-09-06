@@ -23,7 +23,7 @@ var Logger = function(severity, logName){
 		'CRITICAL'
 	];
 	this.severity = severity ? severity : 'INFO';
-	this.logName = logName ? logName : 'host.log';
+	this.logName = logName ? logName : moment().format('YYYYMMDDHms')+'.log';
 
 	this.debug = function(message) {
 		return this.log(message, 'DEBUG');
