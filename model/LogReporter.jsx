@@ -7,6 +7,9 @@ function LogReporter(options) {
 	};
 
 	var showColors = options.showColors || false,
+		 //This is necessary to allow us to tail the log and quit.
+		 //This will never be seen if using run.sh.
+		onComplete = options.onComplete || function (passed) { logger.info('Completed') },
 		timer = options.timer || noopTimer,
 		specCount,
 		failureCount,
@@ -55,6 +58,8 @@ function LogReporter(options) {
 		for (i = 0; i < failedSuites.length; i++) {
 			suiteFailureDetails(failedSuites[i]);
 		}
+
+		onComplete(failureCount === 0);
 	};
 
 	this.specDone = function (result) {

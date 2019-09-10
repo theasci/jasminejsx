@@ -28,7 +28,7 @@ Treat it like an npm module.
     npm install
     ```
 1. Create a spec directory for your `*Spec.jsx` files.
-1. Create a custom `run.jsx` that will bootstrap your testing environment. This can be run directly in the InDesign Scripts Panel 
+1. Create a custom `run.jsx` that will bootstrap your testing environment. This can be run directly in the InDesign Scripts Panel.
     ```js
     var rootPath = new File($.fileName).parent; 
     var loggerPath = rootPath+'/logs/myTest.log'; //custom log path 
@@ -39,27 +39,22 @@ Treat it like an npm module.
 
     runJasmine();
     ```
-1. Add a custom `run.sh` to run the specs in an application
+1. Add a custom `run.sh` to run the specs in an application.
     ```sh
     #/bin/bash
+
     DIRECTORY=$(cd `dirname $0` && pwd)
     EXTENDSCRIPT="$DIRECTORY/run.jsx"
-    EXTENDSCRIPT_LOG="$DIRECTORY/../node_modules/jasminejsx/log/test.log"
-
-    echo "Starting ExtendScript specs..."
-    echo "Be sure you are signed into the Creative Cloud app or you'll get no output from the test suite."
-    timerStart=$(($(gdate +%s%N)/1000000))
+    EXTENDSCRIPT_LOG="$DIRECTORY/log/test.log"
 
     # Truncate test log
     > "$EXTENDSCRIPT_LOG" &> /dev/null
 
     # See available languages with `osalang`
-    osascript -l "JavaScript" -e "var app = new Application('com.adobe.indesign'); app.doScript('$EXTENDSCRIPT', {language: 'javascript'});"
+    osascript -l "JavaScript" -e "var app = new Application('com.adobe.indesign'); app.doScript('$EXTENDSCRIPT', {language: 'javascript'});" &
+    #osascript -e "tell application \"Adobe InDesign CC 2019\" to do script POSIX file \"$EXTENDSCRIPT\" language javascript"
 
-    cat "$EXTENDSCRIPT_LOG" 2> /dev/null
-
-    timerStop=$(($(gdate +%s%N)/1000000))
-    milleseconds=$(echo "($timerStop - $timerStart)/1000"| bc -l)
-    echo "Time to complete: $(printf "%.3f" $milleseconds) seconds"
+    # This tail + sed combination requires a final log write by the LogReporter.onComplete function so that it can quit properly.
+    tail -f "$EXTENDSCRIPT_LOG" | sed '/Finished in/ q'
     ```
 1. `./run.sh` now!
