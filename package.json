@@ -33,5 +33,6 @@
     "testing",
     "jasmine",
     "unit testing"
-  ]
+  ],
+  "license": "Apache-2.0"
 }
