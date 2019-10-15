@@ -48,6 +48,10 @@ describe('Logger', function() {
 			var r = new RegExp('^'+timeRegexp.source+'|NOTICE|{"name":"foo","bar":1,"baz":{"fat":null}}$');
 			expect(debugLogger.messageString({name: 'foo', bar: 1, baz:{fat: null}},'NOTICE')).toMatch(r);
 		});
+		
+		it('handles ExtendScript objects', function(){
+			expect(debugLogger.messageString($.global.app,'INFO')).toMatch(/name:\\"Adobe InDesign\\"/);
+		});
 	});
 	
 	it('meetsSeverity',function(){

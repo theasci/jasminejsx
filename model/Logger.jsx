@@ -69,7 +69,16 @@ var Logger = function(severity, logPath){
 		msg += this.separator + severity;
 		
 		if(typeof(message) == 'object') {
-			msg += this.separator + JSON.stringify(message);
+			try {
+				msg += this.separator + JSON.stringify(message);
+			} catch(e){
+				//attempt to display ExtendScript object
+				if (e instanceof InternalError && message.properties) {
+					msg += this.separator + JSON.stringify(message.properties.toSource());
+				} else {
+					throw e;
+				}
+			}
 		} else {
 			msg += this.separator + message
 		}
