@@ -1,4 +1,4 @@
-var jasmineJsxRootPath = new File($.fileName).parent
+var jasmineJsxRootPath = new File($.fileName).parent;
 var rootPath = rootPath || jasmineJsxRootPath;
 $.evalFile(jasmineJsxRootPath + '/lib/jasmine-2.6.4.js');
 

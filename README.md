@@ -2,59 +2,50 @@
 
 A version of Jasmine that works with Adobe ExtendScript.  ExtendScript is a JavaScript variant that allows you to create and run scripts that extend Adobe's suite of create products.
 
-# Usage
-To use Jasmine JSX:
+# Environment
+
+This has been developed and tested on Mac OS X 10.14.5 machine with Adobe InDesign CC 2019. All but the command line `test/run` (described below) should work on other platforms.
+
+# Installation
+
+Simply install it like any other npm package.
 
 ```sh
-# Install dependencies
-npm install
-
-# Run the specs!
-./test/run
+npm install jasminejsx
 ```
 
-# Adding to a project
+# Usage
 
-Treat it like an npm module.
-
-1. Define a git dependency in your `package.json:
-    ```json
-    "dependencies": {
-        "jasminejsx": "git://github.com/theasci/jasminejsx.git#master"
-    },
-    ```
-1. Install it and its dependencies to your `node_modules`.
-    ```sh
-    npm install
-    ```
-1. Create a spec directory for your `*Spec.jsx` files.
-1. Create a custom `run.jsx` that will bootstrap your testing environment. This can be run directly in the InDesign Scripts Panel.
+1. Create a `test/spec` directory for your `*Spec.jsx` files.
+1. Create a custom `test/run.jsx` that will bootstrap your testing environment. You can run this through an InDesign Scripts panel if you linked it properly to the `/Applications/Adobe InDesign CC 2019/Scripts/Scripts Panel/` directory.
     ```js
-    var rootPath = new File($.fileName).parent;
-    var logger = new Logger('DEBUG', rootPath+'/logs/test.log');
-    $.evalFile(rootPath + '/node_modules/jasminejsx/boot.jsx');
-
-    var specPath = rootPath + '/tests/spec';
-    $.evalFile(specPath + '/MySpec.jsx');
-
-    runJasmine();
+    //Custom environment loads here. This should define a rootPath
+    //@include '../index.jsx'
+    
+    //Create a new logger instance
+    var logger = new Logger('DEBUG', rootPath+'/log/test.log');
+    
+    //Run Jasmine
+    $.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
     ```
-1. Add a custom `run.sh` to run the specs in an application.
-    ```sh
-    #/bin/bash
-
-    DIRECTORY=$(cd `dirname $0` && pwd)
-    EXTENDSCRIPT="$DIRECTORY/run.jsx"
-    EXTENDSCRIPT_LOG="$DIRECTORY/log/test.log"
-
-    # Truncate test log
-    > "$EXTENDSCRIPT_LOG" &> /dev/null
-
-    # See available languages with `osalang`
-    osascript -l "JavaScript" -e "var app = new Application('com.adobe.indesign'); app.doScript('$EXTENDSCRIPT', {language: 'javascript'});" &
-    #osascript -e "tell application \"Adobe InDesign CC 2019\" to do script POSIX file \"$EXTENDSCRIPT\" language javascript"
-
-    # This tail + sed combination requires a final log write by the LogReporter.onComplete function so that it can quit properly.
-    tail -f "$EXTENDSCRIPT_LOG" | sed '/Finished in/ q'
+1. If you want to be able to run these test from the command line, link to the `node_modules/jasminejsx/test/run` file. This currently only works with OSX machines as it uses JavaScript for automation to open InDesign and run the tests.
     ```
-1. `./run.sh` now!
+    ln -s node_modules/jasminejsx/test/run test/run
+    ```
+1. Run all tests with `test/run` or specific tests with `test/run CalculatorSpec`.
+
+# Testing
+
+`npm test` or `test/run`
+
+Output should look like:
+
+```
+me@host jasminejsx|master$ test/run
+1|2019-10-17T12:47:80|INFO|***************************
+2|2019-10-17T12:47:80|INFO|Jasmine ExtendScript Runner
+3|2019-10-17T12:47:80|INFO|***************************
+4|2019-10-17T12:47:81|INFO|Loading all specs in ~/projects/jasminejsx/test/spec
+5|2019-10-17T12:47:84|INFO|53 specs, 0 failures, 51 pending specs
+6|2019-10-17T12:47:85|INFO|Finished in 0.025 seconds
+```

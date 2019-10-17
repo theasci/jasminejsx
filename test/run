@@ -1,7 +1,6 @@
 #/bin/bash
 
 DIRECTORY=$(cd `dirname $0` && pwd)
-echo $DIRECTORY
 EXTENDSCRIPT="$DIRECTORY/run.jsx"
 EXTENDSCRIPT_LOG="$DIRECTORY/../log/test.log"
 
