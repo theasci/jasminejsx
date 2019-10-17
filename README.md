@@ -25,7 +25,7 @@ npm install jasminejsx
     //@include '../index.jsx'
     
     //Create a new logger instance
-    var logger = new Logger('DEBUG', rootPath+'/log/test.log');
+    var logger = new Logger(rootPath+'/log/test.log');
     
     //Run Jasmine
     $.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
