@@ -1,10 +1,12 @@
 # Overview
 
-A version of Jasmine that works with Adobe ExtendScript.  ExtendScript is a JavaScript variant that allows you to create and run scripts that extend Adobe's suite of create products.
+A version of [jasmine](https://jasmine.github.io) that works with Adobe ExtendScript.  ExtendScript is a JavaScript variant that allows you to create and run scripts that extend Adobe's Creative Suite.
 
 # Environment
 
 This has been developed and tested on Mac OS X 10.14.5 machine with Adobe InDesign CC 2019. All but the command line `test/run` (described below) should work on other platforms.
+
+This uses an old version of [jasmine v2.5](https://jasmine.github.io/2.5/introduction) since ExtendScript is so old.
 
 # Installation
 
@@ -30,7 +32,7 @@ npm install jasminejsx
     ```
 1. If you want to be able to run these test from the command line, link to the `node_modules/jasminejsx/test/run` file. This currently only works with OSX machines as it uses JavaScript for automation to open InDesign and run the tests.
     ```
-    ln -s node_modules/jasminejsx/test/run test/run
+    ln -s ../node_modules/jasminejsx/test/run test/run
     ```
 1. Run all tests with `test/run` or specific tests with `test/run CalculatorSpec`.
 
