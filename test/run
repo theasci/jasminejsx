@@ -1,0 +1,50 @@
+#/bin/bash
+
+DIRECTORY=$(cd `dirname $0` && pwd)
+echo $DIRECTORY
+EXTENDSCRIPT="$DIRECTORY/run.jsx"
+EXTENDSCRIPT_LOG="$DIRECTORY/../log/test.log"
+
+if [ "$1" != '' ] && ( [ "$1" = '-h' ] || [ "$1" = '--help' ] || [ "$1" = 'help' ] ); then
+	echo "USAGE: $0 [-h|help] [OneSpec TwoSpec ...]"
+	echo "Names of specs match those in host/tests/spec/"
+	exit 0;
+fi
+
+paramsToJsArray(){
+    str=""
+    for i in "$@"; do
+        if [ "$str" = "" ]; then
+            str="'$i'"
+        else
+            str="$str, '$i'"
+        fi
+    done
+    echo "$str";
+}
+
+# Truncate test log
+if [[ -f "$EXTENDSCRIPT_LOG" ]]; then
+	> "$EXTENDSCRIPT_LOG" &> /dev/null
+fi
+
+# Build arguments to send to ExtendScript
+if [[ $# -gt 0 ]]; then
+    specs=$(paramsToJsArray "$@")
+else
+    specs=''
+fi
+
+# See available languages with `osalang`
+osascript -l "JavaScript" -e "
+	var app = new Application('com.adobe.indesign'); 
+	app.doScript('$EXTENDSCRIPT', {language: 'javascript', withArguments: [$specs]});
+" > /dev/null &
+
+# This tail + sed combination requires a final log write by the LogReporter.onComplete function so that it can quit properly.
+
+while [ ! -f "$EXTENDSCRIPT_LOG" ]; do
+	sleep 1
+done
+
+tail -f "$EXTENDSCRIPT_LOG" | sed '/Finished in/ q'

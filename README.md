@@ -10,7 +10,7 @@ To use Jasmine JSX:
 npm install
 
 # Run the specs!
-./run.sh
+./test/run
 ```
 
 # Adding to a project
@@ -30,8 +30,8 @@ Treat it like an npm module.
 1. Create a spec directory for your `*Spec.jsx` files.
 1. Create a custom `run.jsx` that will bootstrap your testing environment. This can be run directly in the InDesign Scripts Panel.
     ```js
-    var rootPath = new File($.fileName).parent; 
-    var loggerPath = rootPath+'/logs/myTest.log'; //custom log path 
+    var rootPath = new File($.fileName).parent;
+    var logger = new Logger('DEBUG', rootPath+'/logs/test.log');
     $.evalFile(rootPath + '/node_modules/jasminejsx/boot.jsx');
 
     var specPath = rootPath + '/tests/spec';

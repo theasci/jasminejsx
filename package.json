@@ -13,6 +13,10 @@
       "email": "shawn.pyle@gmail.com"
     }
   ],
+  "main": "index.jsx",
+  "scripts": {
+    "test": "test/run"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/theasci/jasminejsx.git"
@@ -25,7 +29,8 @@
   },
   "dependencies": {
     "extendscript-es5-shim": "^0.2.0",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "extendscript-logger": "git://github.com/theasci/extendscript-logger.git#master"
   },
   "keywords": [
     "Adobe InDesign",
