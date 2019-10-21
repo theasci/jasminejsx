@@ -1,5 +1,7 @@
 //@include '../index.jsx'
 
+logger.warn('To prevent odd errors, usually methods not being defined, login into Adobe Creative Cloud and all modal/dialog boxes are open. If tests are not running as expected, try restarting the application.');
+
 //load specs 
 var specPath = rootPath + '/test/spec';
 if (arguments && arguments.length > 0) { //load specified files
