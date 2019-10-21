@@ -1,7 +1,7 @@
 {
   "name": "jasminejsx",
   "description": "A port of Jasmine.js that is compatible with Adobe ExtendScript",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "http://github.com/theasci/jasminejsx.git",
   "contributors": [
     {
@@ -30,7 +30,7 @@
   "dependencies": {
     "extendscript-es5-shim": "^0.2.0",
     "moment": "^2.24.0",
-    "extendscript-logger": "^0.0.2"
+    "extendscript-logger": "^0.1.0"
   },
   "keywords": [
     "Adobe InDesign",
