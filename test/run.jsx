@@ -11,6 +11,9 @@ if (arguments && arguments.length > 0) { //load specified files
 			specName += 'Spec';
 		}
 		var f = new File(specPath.fsName + '/' + specName + '.jsx');
+		if(!f.exists) {
+			throw new Error(f.fsName+' does not exist.');
+		}
 		try {
 			$.evalFile(f);
 		} catch(e) {
