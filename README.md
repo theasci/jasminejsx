@@ -19,7 +19,7 @@ npm install jasminejsx
 # Usage
 
 1. Create a `test/spec` directory for your `*Spec.jsx` files.
-2. In your test folder, create the file `test/run.jsx` that will bootstrap your testing environment. Here's what it should look like:
+2. In your test folder, create your own `run.jsx` file that will bootstrap your testing environment. Here's what it should look like:
 
     ```js
     // Define your root path - this will be the folder that contains your node_modules folder
@@ -35,7 +35,7 @@ npm install jasminejsx
 
 	You can run this script in a few ways:
 
-	* You can run this through an InDesign Scripts panel if you linked it properly to the `Scripts/Scripts Panel/` directory inside your Adobe InDesign application directory.
+	* You can run this through the InDesign Scripts panel if you linked it properly to the `Scripts/Scripts Panel/` directory inside your Adobe InDesign application directory.
 	* You can run this from VS Code using Adobe's ExtendScript Debugger. Just create a debug configuration that points to it
 	* You can run it from the ExtendScript Toolkit
 	* From the command line - see below
