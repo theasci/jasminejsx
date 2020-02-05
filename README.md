@@ -19,22 +19,34 @@ npm install jasminejsx
 # Usage
 
 1. Create a `test/spec` directory for your `*Spec.jsx` files.
-1. Create a custom `test/run.jsx` that will bootstrap your testing environment. You can run this through an InDesign Scripts panel if you linked it properly to the `/Applications/Adobe InDesign CC 2019/Scripts/Scripts Panel/` directory.
+2. In your test folder, create the file `test/run.jsx` that will bootstrap your testing environment. Here's what it should look like:
+
     ```js
-    //Custom environment loads here. This should define a rootPath
-    //@include '../index.jsx'
-    
-    //Create a new logger instance
-    var logger = new Logger(rootPath+'/log/test.log');
-    
-    //Run Jasmine
-    $.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
+    // Define your root path - this will be the folder that contains your node_modules folder
+	var rootPath = new File($.fileName).parent.parent;
+	//@include '../node_modules/jasminejsx/index.jsx'
+
+	// sanity check - you can delete this after you verify your root path is correct
+	logger.info('rootPath is: ' + rootPath);
+
+	// Run Jasmine
+	$.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
     ```
-1. If you want to be able to run these test from the command line, link to the `node_modules/jasminejsx/test/run` file. This currently only works with OSX machines as it uses JavaScript for automation to open InDesign and run the tests.
-    ```
+
+	You can run this script in a few ways:
+
+	* You can run this through an InDesign Scripts panel if you linked it properly to the `Scripts/Scripts Panel/` directory inside your Adobe InDesign application directory.
+	* You can run this from VS Code using Adobe's ExtendScript Debugger. Just create a debug configuration that points to it
+	* You can run it from the ExtendScript Toolkit
+	* From the command line - see below
+
+3. If you want to be able to run these test from the command line, link to the `node_modules/jasminejsx/test/run` file. This currently only works with OSX machines as it uses JavaScript for automation to open InDesign and run the tests.
+
+    ```bash
     ln -s ../node_modules/jasminejsx/test/run test/run
     ```
-1. Run all tests with `test/run` or specific tests with `test/run CalculatorSpec`.
+
+4. Run all tests with `test/run` or specific tests with `test/run CalculatorSpec`.
 
 # Testing
 
