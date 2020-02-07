@@ -1,10 +1,10 @@
 //@include '../index.jsx'
 
-logger.warn('To prevent odd errors, usually methods not being defined, login into Adobe Creative Cloud and all modal/dialog boxes are open. If tests are not running as expected, try restarting the application.');
+logger.warn('To prevent odd errors, usually methods not being defined, login into Adobe Creative Cloud and verify all modal dialog boxes are closed. If tests are not running as expected, try restarting the application.');
 
 //load specs 
 var specPath = new File(rootPath + '/test/spec');
-if (arguments && arguments.length > 0) { //load specified files
+if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //load specified files
 	logger.info('Loading specs: ' + arguments.join(', '));
 	arguments.forEach(function (specName) {
 		if (!specName.match(/Spec/)) {
