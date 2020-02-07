@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.0.5 - 2020-02-07
+
+## Changed
+
+1. Merged [pull request #2](https://github.com/theasci/jasminejsx/pull/2) to support running tests in [ExtendScript Debugger](https://marketplace.visualstudio.com/items?itemName=Adobe.extendscript-debug). Thanks [@lsh246](https://github.com/lsh246)!
+
 # 0.0.4 - 2019-10-21
 
 ## Changed
