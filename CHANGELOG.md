@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.0.6 - 2020-02-25
+
+## Changed
+
+1. Added specStart and specDone debug messages so that debugging inter-dependent tests can be done. Default logger starts with a severity level of INFO. 
+
 # 0.0.5 - 2020-02-07
 
 ## Changed

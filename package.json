@@ -1,7 +1,7 @@
 {
   "name": "jasminejsx",
   "description": "A port of Jasmine.js that is compatible with Adobe ExtendScript",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "homepage": "http://github.com/theasci/jasminejsx.git",
   "contributors": [
     {
