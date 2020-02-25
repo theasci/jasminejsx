@@ -20,6 +20,16 @@ Simply install it like any other npm package. Nice [npm setup tutorial here](htt
 npm install jasminejsx
 ```
 
+You may also elect to add it to your `package.json` as development dependency:
+
+```json
+"devDependencies": {
+  "jasminejsx": "^0.1.0"
+}
+```
+
+and install with a `npm install`.
+
 # Usage
 
 1. Create a `test/spec` directory for your `*Spec.jsx` files.
