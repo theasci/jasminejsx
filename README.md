@@ -4,13 +4,17 @@ A version of [jasmine](https://jasmine.github.io) that works with Adobe ExtendSc
 
 # Environment
 
-This has been developed and tested on Mac OS X 10.14.5 machine with Adobe InDesign CC 2019. All but the command line `test/run` (described below) should work on other platforms.
+This has been developed and tested on 
+* Mac OS X 10.14.5 with Adobe InDesign CC 2019
+* Mac OS X 10.14.5 with Adobe InDesign CC 2020
 
-This uses an old version of [jasmine v2.5](https://jasmine.github.io/2.5/introduction) since ExtendScript is so old.
+All but the command line `test/run` (described below) should work on other platforms.
+
+This uses an old version of [jasmine v2.6](https://jasmine.github.io/2.6/introduction) since ExtendScript is so old.
 
 # Installation
 
-Simply install it like any other npm package.
+Simply install it like any other npm package. Nice [npm setup tutorial here](https://www.sitepoint.com/beginners-guide-node-package-manager/).
 
 ```sh
 npm install jasminejsx
@@ -19,26 +23,32 @@ npm install jasminejsx
 # Usage
 
 1. Create a `test/spec` directory for your `*Spec.jsx` files.
-2. In your test folder, create your own `run.jsx` file that will bootstrap your testing environment. Here's what it should look like:
+1. In your `test/` folder, create your own `run.jsx` file that will bootstrap your testing environment. Here's what it should look like:
 
     ```js
     // Define your root path - this will be the folder that contains your node_modules folder
-	var rootPath = new File($.fileName).parent.parent;
-	//@include '../node_modules/jasminejsx/index.jsx'
+    var rootPath = new File($.fileName).parent.parent;
 
-	// sanity check - you can delete this after you verify your root path is correct
-	logger.info('rootPath is: ' + rootPath);
+    // Define an optional Logger to override default
+    // $.evalFile(modulesPath + '/extendscript-logger/index.jsx');
+    // var logger = new Logger(rootPath+'/log/mytestlog.log', 'INFO');
+    
+    //Load the jasminejsx setup
+    //@include '../node_modules/jasminejsx/index.jsx'
 
-	// Run Jasmine
-	$.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
+    // Sanity check, you can delete this after you verify your root path is correct.
+    logger.info('rootPath is: ' + rootPath);
+
+    // Run Jasmine
+    $.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
     ```
 
-	You can run this script in a few ways:
+    You can run this script in a few ways:
 
-	* You can run this through the InDesign Scripts panel if you linked it properly to the `Scripts/Scripts Panel/` directory inside your Adobe InDesign application directory.
-	* You can run this from VS Code using Adobe's ExtendScript Debugger. Just create a debug configuration that points to it
-	* You can run it from the ExtendScript Toolkit
-	* From the command line - see below
+    * You can run this through the InDesign Scripts panel if it is linked properly to the `Scripts/Scripts Panel/` directory inside your Adobe InDesign application directory.
+    * You can run this from VS Code using [Adobe's ExtendScript Debugger](https://marketplace.visualstudio.com/items?itemName=Adobe.extendscript-debug). Just create a debug configuration that points to it.
+    * You can run it from within [Adobe ExtendScript Toolkit](https://www.adobe.com/devnet/scripting/estk.html). Not recommended as [future development is not in the works for ESTK](https://medium.com/adobetech/workaround-for-extendscript-toolkit-debugger-error-1116-f067f81f96c6). 
+    * From the command line - see below.
 
 3. If you want to be able to run these test from the command line, link to the `node_modules/jasminejsx/test/run` file. This currently only works with OSX machines as it uses JavaScript for automation to open InDesign and run the tests.
 
@@ -55,13 +65,14 @@ npm install jasminejsx
 Output should look like:
 
 ```
-me@host jasminejsx|master$ test/run
-1|2019-10-17T12:47:80|INFO|***************************
-2|2019-10-17T12:47:80|INFO|Jasmine ExtendScript Runner
-3|2019-10-17T12:47:80|INFO|***************************
-4|2019-10-17T12:47:81|INFO|Loading all specs in ~/projects/jasminejsx/test/spec
-5|2019-10-17T12:47:84|INFO|53 specs, 0 failures, 51 pending specs
-6|2019-10-17T12:47:85|INFO|Finished in 0.025 seconds
+me@host$ test/run
+2020-02-25T12:13:22|INFO|***************************
+2020-02-25T12:13:22|INFO|Jasmine ExtendScript Runner
+2020-02-25T12:13:22|INFO|***************************
+2020-02-25T12:13:22|WARN|To prevent odd errors, usually methods not being defined, login into Adobe Creative Cloud and verify all modal dialog boxes are closed. If tests are not running as expected, try restarting the application.
+2020-02-25T12:13:23|INFO|Loading all specs in /Users/spyle/projects/jasminejsx/test/spec
+2020-02-25T12:13:29|INFO|53 specs, 0 failures, 51 pending specs
+2020-02-25T12:13:29|INFO|Finished in 0.035 seconds
 ```
 
 # NPM Release Tasks

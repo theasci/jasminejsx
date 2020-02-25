@@ -3,7 +3,7 @@ var rootPath = rootPath || jasmineJsxRootPath;
 $.evalFile(jasmineJsxRootPath + '/lib/jasmine-2.6.4.js');
 
 $.evalFile(rootPath + '/node_modules/extendscript-logger/index.jsx');
-var logger = logger || new Logger(rootPath+'/log/test.log');
+var logger = logger || new Logger(rootPath+'/log/test.log', 'INFO');
 
 $.evalFile(jasmineJsxRootPath + '/model/LogReporter.jsx');
 

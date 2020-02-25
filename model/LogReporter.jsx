@@ -33,6 +33,10 @@ function LogReporter(options) {
 		timer.start();
 	};
 
+	this.specStarted = function(result) {
+		logger.debug('Starting: '+ result.fullName);
+	}
+
 	this.jasmineDone = function () {
 		for (var i = 0; i < failedSpecs.length; i++) {
 			specFailureDetails(failedSpecs[i]);
@@ -63,8 +67,9 @@ function LogReporter(options) {
 	};
 
 	this.specDone = function (result) {
+		logger.debug('Ending: ' + result.fullName + ' ' + result.status);
 		specCount++;
-
+		
 		if (result.status == 'pending') {
 			pendingCount++;
 			return;
