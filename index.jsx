@@ -1,11 +1,12 @@
-var jasmineJsxRootPath = new File($.fileName).parent;
-var rootPath = rootPath || jasmineJsxRootPath;
-$.evalFile(jasmineJsxRootPath + '/lib/jasmine-2.6.4.js');
+var Global = Global || {};
+Global.jasmineJsxRootPath = new File($.fileName).parent;
+Global.rootPath = Global.rootPath || (typeof(rootPath) != 'undefined' ? rootPath : null) || Global.jasmineJsxRootPath;
+$.evalFile(Global.jasmineJsxRootPath + '/lib/jasmine-2.6.4.js');
 
-$.evalFile(rootPath + '/node_modules/extendscript-logger/index.jsx');
-var logger = logger || new Logger(rootPath+'/log/test.log', 'INFO');
+$.evalFile(Global.rootPath + '/node_modules/extendscript-logger/index.jsx');
+Global.logger = Global.loogger || (typeof(logger) != 'undefined' ? logger : null) || new Logger(Global.rootPath+'/log/test.log', 'INFO');
 
-$.evalFile(jasmineJsxRootPath + '/model/LogReporter.jsx');
+$.evalFile(Global.jasmineJsxRootPath + '/model/LogReporter.jsx');
 
 /**
  * Timeout method used in QueueRunner.timer
@@ -37,7 +38,7 @@ var jasmineInterface = jasmineRequire.interface(jasmine, env);
 extend($.global, jasmineInterface);
 
 var reporter = new LogReporter({
-	logger: logger,
+	logger: Global.logger,
 	timer: {
 		startedAt: null,
 		start: function () {

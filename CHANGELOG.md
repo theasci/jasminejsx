@@ -3,7 +3,13 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-# 0.0.6 - 2020-02-25
+# 0.2.0 - 2020-03-03
+
+## Changed
+
+1. `index.jsx` will attempt to get the rootPath and logger from a `Global` object before looking at a global variables. `README.md` has been updated accordingly.
+
+# 0.1.0 - 2020-02-25
 
 ## Changed
 

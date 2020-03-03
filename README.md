@@ -37,20 +37,22 @@ and install with a `npm install`.
 
     ```js
     // Define your root path - this will be the folder that contains your node_modules folder
-    var rootPath = new File($.fileName).parent.parent;
+    var Global = Global || {};
+    Global.rootPath = new File($.fileName).parent.parent;
+    Global.modulesPath = new File(Global.rootPath + '/node_modules');
 
     // Define an optional Logger to override default
-    // $.evalFile(modulesPath + '/extendscript-logger/index.jsx');
-    // var logger = new Logger(rootPath+'/log/mytestlog.log', 'INFO');
+    // $.evalFile(Global.modulesPath + '/extendscript-logger/index.jsx');
+    // Global.logger = new Logger(Global.rootPath+'/log/mytestlog.log', 'DEBUG');
     
     //Load the jasminejsx setup
     //@include '../node_modules/jasminejsx/index.jsx'
 
     // Sanity check, you can delete this after you verify your root path is correct.
-    logger.info('rootPath is: ' + rootPath);
+    Global.logger.info('Global.rootPath is: ' + Global.rootPath);
 
     // Run Jasmine
-    $.evalFile(rootPath + '/node_modules/jasminejsx/test/run.jsx');
+    $.evalFile(Global.modulesPath + '/jasminejsx/test/run.jsx');
     ```
 
     You can run this script in a few ways:

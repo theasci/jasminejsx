@@ -6,20 +6,22 @@ function LogReporter(options) {
 		elapsed: function () { return 0; },
 	};
 
-	var showColors = options.showColors || false,
-		 //This is necessary to allow us to tail the log and quit.
-		 //This will never be seen if using run.sh.
-		onComplete = options.onComplete || function (passed) { logger.info('Completed') },
-		timer = options.timer || noopTimer,
-		specCount,
-		failureCount,
-		failedSpecs = [],
-		pendingCount,
-		failedSuites = [],
-		logger = options.logger || null;
+	var logger = options.logger || null;
+	var showColors = options.showColors || false;
+	 //This is necessary to allow us to tail the log and quit.
+	 //This will never be seen if using run.sh.
+	var onComplete = options.onComplete || function (passed) { 
+		logger.info('Completed');
+	};
+	var timer = options.timer || noopTimer;
+	var specCount;
+	var failureCount;
+	var failedSpecs = [];
+	var pendingCount;
+	var failedSuites = [];
 
 	if (!logger) {
-		throw new TypeError('Logger instance must be given.');
+		throw new TypeError('Logger instance must be given. e.g. `new LogReporter({logger: new Logger(...)})`');
 	}
 
 	logger.info('***************************');
