@@ -4,7 +4,7 @@ Global.rootPath = Global.rootPath || (typeof(rootPath) != 'undefined' ? rootPath
 $.evalFile(Global.jasmineJsxRootPath + '/lib/jasmine-2.6.4.js');
 
 $.evalFile(Global.rootPath + '/node_modules/extendscript-logger/index.jsx');
-Global.logger = Global.logger || (typeof(logger) != 'undefined' ? logger : null) || new Logger(Global.rootPath+'/log/test.log', 'DEBUG');
+Global.logger = Global.logger || (typeof(logger) != 'undefined' ? logger : null) || new Logger(Global.rootPath+'/log/test.log', 'INFO');
 
 $.evalFile(Global.jasmineJsxRootPath + '/model/LogReporter.jsx');
 
