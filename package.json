@@ -30,7 +30,7 @@
   "dependencies": {
     "extendscript-es5-shim": "^0.2.0",
     "moment": "^2.24.0",
-    "extendscript-logger": "^0.2.0"
+    "extendscript-logger": "^0.3.0"
   },
   "keywords": [
     "Adobe InDesign",
