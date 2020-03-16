@@ -45,9 +45,7 @@ var reporter = new LogReporter({
 			this.startedAt = moment();
 		},
 		elapsed: function () {
-			return moment.duration(
-				moment().diff(this.startedAt)
-			).asMilliseconds();
+			return moment().diff(this.startedAt);
 		}
 	},
 });
