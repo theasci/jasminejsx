@@ -7,6 +7,7 @@ A version of [jasmine](https://jasmine.github.io) that works with Adobe ExtendSc
 This has been developed and tested on 
 * Mac OS X 10.14.5 with Adobe InDesign CC 2019
 * Mac OS X 10.14.5 with Adobe InDesign CC 2020
+* Mac OS X 10.15.3 with Adobe InDesign CC 2020
 
 All but the command line `test/run` (described below) should work on other platforms.
 
@@ -96,3 +97,7 @@ me@host$ test/run
 1. Check them all into the repository.
 1. `git tag -a <version> -m <version>; git push --tags`
 1. `npm publish` to deploy the release to npm.
+
+# Thanks
+
+A big thank you to [@tmaslen](https://github.com/tmaslen) for the original idea and development of jasminejsx.

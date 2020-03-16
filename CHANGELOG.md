@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.3.0 - 2020-03-03
+
+## Fixed
+
+1. [Simplify LogReporter.timer.elapsed](https://github.com/theasci/jasminejsx/commit/8c97fe9ccef44195319916c128159c70bab6aae4) method to use diff instead of durations. Durations still appear to work in node but not in ExtendScript.
+
+## Changed
+
+1. Upgrade [extendscript-logger](https://github.com/theasci/extendscript-logger) to 0.3.0 which now uses [extendscript-json](https://github.com/theasci/extendscript-json).
+
 # 0.2.0 - 2020-03-03
 
 ## Changed
