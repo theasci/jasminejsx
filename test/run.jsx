@@ -7,10 +7,15 @@ Global.specPath = new File(Global.rootPath + '/test/spec');
 if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //load specified files
 	Global.logger.info('Loading specs: ' + arguments.join(', '));
 	arguments.forEach(function (specName) {
-		if (!specName.match(/Spec/)) {
-			specName += 'Spec';
+		var specFileName = specName;
+		if(!specName.match(/\.jsx$/)) {
+			if (!specName.match(/Spec$/)) {
+				specFileName = specName + 'Spec';
+			}
+			specFileName += '.jsx';
 		}
-		var f = new File(Global.specPath.fsName + '/' + specName + '.jsx');
+		
+		var f = new File(Global.specPath.fsName + '/' + specFileName);
 		if(!f.exists) {
 			throw new Error(f.fsName+' does not exist.');
 		}
