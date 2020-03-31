@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.3.1 - 2020-03-31
+
+## Fixed
+
+1. [Fix spec file name generation in test/run.jsx](https://github.com/theasci/jasminejsx/commit/b69b75a02fd604e52e5b6c5ee5c62314936413cd). This was not finding files with "Special" in the name.
+
 # 0.3.0 - 2020-03-03
 
 ## Fixed
