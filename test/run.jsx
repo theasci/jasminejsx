@@ -5,6 +5,8 @@ Global.logger.warn('To prevent odd errors, usually methods not being defined, lo
 //Configuration
 Global.jasminejsx = Global.jasminejsx || {};
 Global.jasminejsx.specPath = Global.jasminejsx.specPath || new File(Global.rootPath + '/test/spec');
+//lists each pending spec and the associated message
+Global.jasminejsx.reportPending = Global.jasminejsx.reportPending || false; 
 
 //Load specs
 if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //load specified files

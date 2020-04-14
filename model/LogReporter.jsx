@@ -18,6 +18,7 @@ function LogReporter(options) {
 	var failureCount;
 	var failedSpecs = [];
 	var pendingCount;
+	var pendingSpecs = [];
 	var failedSuites = [];
 
 	if (!logger) {
@@ -45,11 +46,13 @@ function LogReporter(options) {
 		}
 
 		if (specCount > 0) {
-
 			var specCounts = specCount + ' ' + plural('spec', specCount) + ', ' +
 				failureCount + ' ' + plural('failure', failureCount);
 
-			if (pendingCount) {
+			if (pendingCount > 0) {
+				for (var i = 0; i < pendingSpecs.length; i++) {
+					specPendingDetails(pendingSpecs[i]);
+				}
 				specCounts += ', ' + pendingCount + ' pending ' + plural('spec', pendingCount);
 			}
 
@@ -74,6 +77,8 @@ function LogReporter(options) {
 		
 		if (result.status == 'pending') {
 			pendingCount++;
+			result.report = Global.jasminejsx.reportPending;
+			pendingSpecs.push(result);
 			return;
 		}
 
@@ -125,14 +130,19 @@ function LogReporter(options) {
 			logger.info(indent(failedExpectation.message, 2));
 			logger.info(indent(failedExpectation.stack, 2));
 		}
-
+	}
+	
+	function specPendingDetails(result) {
+		if(result.report) {
+			logger.info(result.fullName);
+			logger.info(indent(result.pendingReason, 2));
+		}
 	}
 
 	function suiteFailureDetails(result) {
 		for (var i = 0; i < result.failedExpectations.length; i++) {
 			logger.info('An error was thrown in an afterAll');
 			logger.info('AfterAll ' + result.failedExpectations[i].message);
-
 		}
 	}
 	return this;
