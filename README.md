@@ -47,6 +47,7 @@ and install with a `npm install`.
     // Global.logger = new Logger(Global.rootPath+'/log/mytestlog.log', 'DEBUG');
     
     //Configuration options
+    //Global.jasminejsx = Global.jasminejsx || {}
     //Global.jasminejsx.specPath = new File(Global.rootPath + '/test/spec');
     //Global.jasminejsx.reportPending = true;
     
