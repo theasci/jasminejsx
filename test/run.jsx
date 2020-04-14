@@ -2,8 +2,11 @@
 
 Global.logger.warn('To prevent odd errors, usually methods not being defined, login into Adobe Creative Cloud and verify all modal dialog boxes are closed. If tests are not running as expected, try restarting the application.');
 
-//load specs 
-Global.specPath = new File(Global.rootPath + '/test/spec');
+//Configuration
+Global.jasminejsx = Global.jasminejsx || {};
+Global.jasminejsx.specPath = Global.jasminejsx.specPath || new File(Global.rootPath + '/test/spec');
+
+//Load specs
 if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //load specified files
 	Global.logger.info('Loading specs: ' + arguments.join(', '));
 	arguments.forEach(function (specName) {
@@ -15,7 +18,7 @@ if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //l
 			specFileName += '.jsx';
 		}
 		
-		var f = new File(Global.specPath.fsName + '/' + specFileName);
+		var f = new File(Global.jasminejsx.specPath.fsName + '/' + specFileName);
 		if(!f.exists) {
 			throw new Error(f.fsName+' does not exist.');
 		}
@@ -26,8 +29,8 @@ if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //l
 		}
 	});
 } else { //load everything
-	Global.logger.info('Loading all specs in ' + Global.specPath.fsName);
-	var specFolder = new Folder(Global.specPath.fsName);
+	Global.logger.info('Loading all specs in ' + Global.jasminejsx.specPath.fsName);
+	var specFolder = new Folder(Global.jasminejsx.specPath.fsName);
 	specFolder.getFiles().forEach(function (f) {
 		if (f.name.match(/Spec\.jsx$/)) {
 			try {
