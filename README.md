@@ -46,6 +46,10 @@ and install with a `npm install`.
     // $.evalFile(Global.modulesPath + '/extendscript-logger/index.jsx');
     // Global.logger = new Logger(Global.rootPath+'/log/mytestlog.log', 'DEBUG');
     
+    //Configuration options
+    //Global.jasminejsx.specPath = new File(Global.rootPath + '/test/spec');
+    //Global.jasminejsx.reportPending = true;
+    
     //Load the jasminejsx setup
     //@include '../node_modules/jasminejsx/index.jsx'
 
