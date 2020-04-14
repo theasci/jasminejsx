@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.4.0 - 2020-04-14
+
+## Added
+
+1. Pending message output can now be with the configuration object `Global.jasminejsx`. See `test/run.jsx`.
+
 # 0.3.1 - 2020-03-31
 
 ## Fixed
