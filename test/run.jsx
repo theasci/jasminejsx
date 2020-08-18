@@ -13,6 +13,8 @@ if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //l
 	Global.logger.info('Loading specs: ' + arguments.join(', '));
 	arguments.forEach(function (specName) {
 		var specFileName = specName;
+
+		//add missing Spec.jsx
 		if(!specName.match(/\.jsx$/)) {
 			if (!specName.match(/Spec$/)) {
 				specFileName = specName + 'Spec';
@@ -20,7 +22,13 @@ if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //l
 			specFileName += '.jsx';
 		}
 		
-		var f = new File(Global.jasminejsx.specPath.fsName + '/' + specFileName);
+		//append spec path if it doesn't include root /
+		if(specFileName.match(/^\//)) {
+			var f = new File(specFileName);	
+		} else {
+			var f = new File(Global.jasminejsx.specPath.fsName + '/' + specFileName);	
+		}
+		
 		if(!f.exists) {
 			throw new Error(f.fsName+' does not exist.');
 		}
