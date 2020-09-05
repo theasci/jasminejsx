@@ -49,7 +49,8 @@ and install with a `npm install`.
     //Configuration options
     //Global.jasminejsx = Global.jasminejsx || {}
     //Global.jasminejsx.specPath = new File(Global.rootPath + '/test/spec');
-    //Global.jasminejsx.reportPending = true;
+    //Global.jasminejsx.reportPending = true; //defaults to false
+    //Global.jasminejsx.activateApp = true; //defaults to false
     
     //Load the jasminejsx setup
     //@include '../node_modules/jasminejsx/index.jsx'

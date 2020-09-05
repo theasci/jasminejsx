@@ -7,6 +7,8 @@ Global.jasminejsx = Global.jasminejsx || {};
 Global.jasminejsx.specPath = Global.jasminejsx.specPath || new File(Global.rootPath + '/test/spec');
 //lists each pending spec and the associated message
 Global.jasminejsx.reportPending = Global.jasminejsx.reportPending || false; 
+//Allows the ability to disable app activation when the specs are run. This can help prioritize running tests by bringing the application to the foreground..
+Global.jasminejsx.activateApp = Global.jasminejsx.activateApp || false
 
 //Load specs
 if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //load specified files
@@ -53,6 +55,8 @@ if (typeof arguments !== 'undefined' && arguments && arguments.length > 0) { //l
 }
 
 //Bring application to forefront to prioritize running tests.
-app.activate();
+if (Global.jasminejsx.activateApp) {
+	app.activate();
+}
 
 runJasmine();
