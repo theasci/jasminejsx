@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.5.0 - 2020-09-05
+
+## Changed
+
+1. Disable activating of application on every run. When using a guard to auto run specs, running all specs will activate the application continually which is pretty annoying if you want to do anything else. This can be reactivated by setting `Global.jasminejsx.activateApp = true;` in your `test/run.jsx`.
+
 # 0.4.0 - 2020-04-14
 
 ## Added
